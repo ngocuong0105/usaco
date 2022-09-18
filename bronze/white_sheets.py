@@ -1,16 +1,22 @@
-import sys
+def area(t):
+    return (t[3]-t[1])*(t[2]-t[0])
 
-# stdin and stdout
-
-x1, y1, x2, y2 = map(int, sys.stdin.readline().split())
-x3, y3, x4, y4 = map(int, sys.stdin.readline().split())
-x5, y5, x6, y6 = map(int, sys.stdin.readline().split())
-
-def contained(a,b):
-    return b[0]<= a[0] <= a[1] <= b[1]
+def overlap_line(a,b,c,d):
+    if not (a<=c<b or c<=a<d): return 0,0
+    return max(a,c),min(b,d)
 
 def overlap(a,b):
-    return min(a[1],b[1]) <= max(a[0],b[0])
+    x1,x2 = overlap_line(a[0],a[2],b[0],b[2])
+    y1,y2 = overlap_line(a[1],a[3],b[1],b[3])
+    return (x1,y1,x2,y2)
 
-if (contained((x1,x2),(x3,x4)) or (contained((x1,x2),(x5,x6))) or (overlap((x3,x4),(x5,x6)) and contained((x1,x2),(min(x3,x5),max(x4,x6))))) and (contained((y1,y2),(y3,y4)) or (contained((y1,y2),(y5,y6))) or (overlap((y3,y4),(y5,y6)) and contained((y1,y2),(min(y3,y5),max(y4,y6))))): print('NO')
-print('YES')
+t1 = tuple(map(int,input().split())) #white
+t2 = tuple(map(int,input().split())) #black
+t3 = tuple(map(int,input().split())) #black
+res = area(t1) - area(overlap(t1,t2)) - area(overlap(t1,t3)) + area(overlap(t1,overlap(t2,t3)))
+if res == 0:
+    print('NO')
+else:
+    print('YES')
+
+#%%
