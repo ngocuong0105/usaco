@@ -15,9 +15,14 @@ nums = list(map(int, sys.stdin.readline().split()))
 
 #%%
 import sys
+sys.stdin = open("cowsignal.in", "r")
+sys.stdout = open("cowsignal.out", "w")
+# then use input() and print whereever you want
 
 a, b, c = map(int, input().split())
 a, b, c = map(int, sys.stdin.readline().split())
+
+
 
 #%%
 fin = open("problemname.in", "r")
