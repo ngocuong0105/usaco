@@ -1,3 +1,3 @@
 import sys
-sys.stdin = open("cownomics.in", "r")
-sys.stdout = open("cownomics.out", "w")
+sys.stdin = open("backforth.in", "r")
+sys.stdout = open("backforth.out", "w")
