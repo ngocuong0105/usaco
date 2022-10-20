@@ -1,6 +1,6 @@
 # Algorithms ++
 
-Jivota e bolka i zadachi. [USACO](https://usaco.guide/dashboard/)
+Jivota e bolka i zadachi. [USACO](https://usaco.guide)
 
 For, input output use `aa.py` and `aaa.py`.
 
