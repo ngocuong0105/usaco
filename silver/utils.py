@@ -20,11 +20,12 @@ from typing import Callable
 
 FOLDER_WITH_TESTS = '/home/ncuong/Downloads'
 
-def _print_lines(lines):
+def _print_lines(lines, chars):
     for line in lines:
-        print(line)
+        if chars == float('inf'): print(line)
+        else: print(line[:chars])
 
-def print_mismatch(test_cases = []):
+def print_mismatch(test_cases = [], chars = float('inf')):
     files = glob.glob(f'{FOLDER_WITH_TESTS}/*')
     latest = max(files, key=os.path.getctime)
     onlyfiles = [f for f in listdir(latest) if isfile(join(latest, f))]
@@ -41,9 +42,9 @@ def print_mismatch(test_cases = []):
             lines_act = file_act.readlines()
             print(f'Test case {i}:')
             print('Expected: ', end = '')
-            _print_lines(lines_exp)
+            _print_lines(lines_exp, chars)
             print('Actual: ', end = '')
-            _print_lines(lines_act)
+            _print_lines(lines_act, chars)
             errors += 1
     if not errors: print('SUCCESS')
     else: print('Errors:', errors)
